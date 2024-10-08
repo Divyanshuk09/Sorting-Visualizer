@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 function SelectionSort() {
     const [array, setArray] = useState([49, 24, 27, 20, 38, 39, 46, 2, 17]);
-    const [colors, setColors] = useState(Array(9).fill('bg-blue-400'));
+    const [colors, setColors] = useState(Array(9).fill('bg-cyan-400'));
     const [minElementIndex, setMinElementIndex] = useState(null);
     const [currentElementIndex, setCurrentElementIndex] = useState(null);
     const [inputValue, setInputValue] = useState("");
@@ -17,7 +17,7 @@ function SelectionSort() {
     const generateRandomArray = () => {
         const randomArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
         setArray(randomArray);
-        setColors(Array(10).fill('bg-blue-400'));
+        setColors(Array(10).fill('bg-cyan-400'));
         setInputValue("");
         setMinElementIndex(null);
         setCurrentElementIndex(null);
@@ -36,7 +36,7 @@ function SelectionSort() {
             alert("Please enter a valid comma-separated list of numbers.");
         } else {
             setArray(userArray);
-            setColors(Array(userArray.length).fill('bg-blue-400'));
+            setColors(Array(userArray.length).fill('bg-cyan-400'));
             setIsSorting(false);
             setSorted(false);
         }
@@ -58,18 +58,18 @@ function SelectionSort() {
         setIsSorting(true);
         setSorted(false);
         let arr = [...array];
-        let colorArray = Array(arr.length).fill('bg-blue-400');
+        let colorArray = Array(arr.length).fill('bg-cyan-400');
 
         for (let i = 0; i < arr.length; i++) {
             let minIndex = i;
             setCurrentElementIndex(i);
 
-            colorArray[i] = 'bg-orange-500'; // Highlight current element
+            colorArray[i] = 'bg-yellow-500'; // Highlight current element
             setColors([...colorArray]);
 
             for (let j = i + 1; j < arr.length; j++) {
                 setMinElementIndex(minIndex);
-                colorArray[minElementIndex] = 'bg-green-500'; // Mark as potential minimum
+                colorArray[minElementIndex] = 'bg-green-700'; // Mark as potential minimum
                 colorArray[j] = 'bg-red-500'; // Highlight compared element
                 setColors([...colorArray]);
                 await sleep(speed);
@@ -81,12 +81,12 @@ function SelectionSort() {
                 }
 
                 if (arr[j] < arr[minIndex]) {
-                    colorArray[minIndex] = 'bg-blue-400'; // Reset previous min color
+                    colorArray[minIndex] = 'bg-cyan-400'; // Reset previous min color
                     minIndex = j;
                     setMinElementIndex(minIndex);
                 }
 
-                colorArray[j] = 'bg-blue-400'; // Reset color
+                colorArray[j] = 'bg-cyan-400'; // Reset color
                 setColors([...colorArray]);
             }
 
@@ -102,12 +102,12 @@ function SelectionSort() {
             }
 
             // Mark sorted element as green
-            colorArray[i] = 'bg-green-500';
+            colorArray[i] = 'bg-green-700';
             setColors([...colorArray]);
             await sleep(speed);
         }
 
-        colorArray[arr.length - 1] = 'bg-green-500'; // Mark the last element as sorted
+        colorArray[arr.length - 1] = 'bg-green-700'; // Mark the last element as sorted
         setColors([...colorArray]);
         setMinElementIndex(null);
         setCurrentElementIndex(null);
@@ -161,7 +161,7 @@ function SelectionSort() {
                 />
                 <button
                     onClick={handleArraySubmit}
-                    className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-700"
+                    className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-700"
                 >
                     Submit Array
                 </button>
@@ -179,28 +179,28 @@ function SelectionSort() {
             <div className="space-x-4">
                 <button
                     onClick={selectionSort}
-                    className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 ${isSorting && 'opacity-50 cursor-not-allowed'}`}
+                    className={`px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-700 ${isSorting && 'opacity-50 cursor-not-allowed'}`}
                     disabled={isSorting}
                 >
                     Sort
                 </button>
                 <button
                     onClick={generateRandomArray}
-                    className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-700"
+                    className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-700"
                     disabled={isSorting}
                 >
                     Create Random Array
                 </button>
                 <button
                     onClick={handlePauseResume}
-                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
+                    className="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-700"
                     disabled={!isSorting}
                 >
                     {isPaused ? 'Resume' : 'Pause'}
                 </button>
             </div>
 
-            {sorted && <div className="mt-4 text-green-600 font-bold">Array is sorted!</div>}
+            {sorted && <div className="mt-4 text-green-700 font-bold">Array is sorted!</div>}
         </div>
     );
 }
